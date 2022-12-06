@@ -10,14 +10,26 @@ function computerChoice(){
 }
 
 function playRound(playerSelection,computerSelection){
-    if (playerSelection === "rock" && computerSelection === "rock"){
-        return `You tie! You played ${playerSelection} and the computer played ${computerSelection}.`
-    } else if (playerSelection ==="paper" && computerSelection === "paper"){
+    if (playerSelection === computerSelection){
         return `You tie! You played ${playerSelection} and the computer played ${computerSelection}`
+    } else if (playerSelection === "rock" && computerSelection === "paper" || playerSelection === "paper"
+    && computerSelection === "scissors" || playerSelection === "scissors" && computerSelection === "rock"){
+        ++compScore;
+        return `You lose! You played ${playerSelection} and the computer played ${computerSelection}`
+    } else {
+        ++playerScore;
+        return `You win! You played ${playerSelection} and the computer played ${computerSelection}`
     }
 }
 
+let playerScore = 0;
+let compScore = 0;
+let playerGame = 0;
+let compGame = 0;
+
 function playGame(){
+    
+    for (i =0; i<50; ++i){
     let x = prompt("Choose");
     let x_Lower = x.toLowerCase();
     while(true){
@@ -33,9 +45,33 @@ function playGame(){
     console.log(playerSelection);
     console.log(computerSelection);
    
-    //playRound(playerSelection,computerSelection) 
     
-    
-    
-}
+    console.log(playRound(playerSelection, computerSelection))
+    console.log("Player score: " + playerScore);
+    console.log("Computer score " + compScore);
 
+   if (playerScore === 5){
+        ++playerGame;
+        console.log("You win this game!")
+        console.log("Player games won: " + playerGame);
+        console.log("Computer games won: " + compGame);
+        playerScore = 0;
+        compScore = 0;
+
+        return;
+    } else if (compScore === 5){
+        ++compGame;
+        console.log("You lose this game!");
+        console.log("Player games won: " + playerGame);
+        console.log("Computer games won: " + compGame);
+        playerScore = 0;
+        compScore = 0;
+        return;
+   }}
+   
+   
+
+
+
+
+}
