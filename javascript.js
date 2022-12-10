@@ -29,8 +29,8 @@ function playRound(playerSelection,computerSelection){
 
 let playerScore = 0;
 let compScore = 0;
-let playerGame = 0;
-let compGame = 0;
+let playerGame = 4;
+let compGame = 4;
 
 function playGame(){
     pScore.textContent = playerScore;
@@ -70,9 +70,12 @@ buttons.forEach(btn => {
          computerSelection = computerChoice();
         playRound(playerSelection,computerSelection);
         playGame();
+        gameOver();
         
     })
 })
+
+
 
 newGameBtn.addEventListener("click", function(){
     playNewGame();
@@ -115,14 +118,45 @@ function playNewGame(){
     document.getElementById("rock").disabled = false;
     document.getElementById("paper").disabled = false;
     document.getElementById("scissors").disabled = false;
-   // newGameMessage.remove();
-   // newGameBtn.remove();
     endGame.remove();
     pScore.textContent = playerScore;
     cScore.textContent = compScore;
     output.textContent = "Choose rock, paper or scissors!"
 }
 
+
+const gameover = document.createElement("div");
+const body = document.querySelector("body");
+gameover.classList.add("game-over");
+const winImg = document.createElement("img");
+winImg.src = "../rockpaperscissors2/images/celebrate.png";
+const loseImg = document.createElement("img");
+loseImg.src = "../rockpaperscissors2/images/sad.png";
+const endContainer = document.createElement("div");
+endContainer.classList.add("end-container");
+winImg.classList.add("image");
+loseImg.classList.add("image");
+
+
+
+function gameOver(){
+    if(playerGame === 5){
+        outputContainer.remove();
+        gameover.textContent = "Congratulations you won! You were the first to win 5 games!";
+        endContainer.append(gameover);
+        endContainer.append(winImg);
+        body.append(endContainer);
+
+    } else if (compGame === 5){
+        outputContainer.remove();
+        gameover.textContent = "Too bad you lose! The computer won 5 games first.";
+        endContainer.append(gameover);
+        endContainer.append(loseImg);
+        body.append(endContainer);
+    } else{
+        return;
+    }
+}
 
 
 
