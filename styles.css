@@ -89,6 +89,10 @@ body{
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    border: 2px solid black;
+    background-color: lightblue;
+    margin: auto;
+    padding: 10px;
 }
 
 
