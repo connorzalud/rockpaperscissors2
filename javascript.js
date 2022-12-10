@@ -55,10 +55,12 @@ const pScore = document.querySelector(".pScore");
 const cScore = document.querySelector(".cScore");
 const cGames = document.querySelector(".cGames");
 const pGames = document.querySelector(".pGames");
-const endGame = document.querySelector(".endGame");
+const endGame = document.createElement("div");
 const newGameMessage = document.createElement("p");
 const newGameBtn = document.createElement("button");
 newGameBtn.classList.add("newbtn");
+endGame.classList.add("endGame");
+const outputContainer = document.querySelector(".output-container");
 
 
 buttons.forEach(btn => {
@@ -90,6 +92,8 @@ function playerWin(){
     endGame.append(newGameMessage);
     newGameBtn.textContent = "Play again";
     endGame.append(newGameBtn);
+    outputContainer.append(endGame);
+
     playerScore = 0;
     compScore = 0;
 }
@@ -102,6 +106,7 @@ function playerLose(){
     endGame.append(newGameMessage);
     newGameBtn.textContent = "Play again";
     endGame.append(newGameBtn);
+    outputContainer.append(endGame);
     playerScore = 0;
     compScore = 0;
 }
@@ -110,8 +115,9 @@ function playNewGame(){
     document.getElementById("rock").disabled = false;
     document.getElementById("paper").disabled = false;
     document.getElementById("scissors").disabled = false;
-    newGameMessage.remove();
-    newGameBtn.remove();
+   // newGameMessage.remove();
+   // newGameBtn.remove();
+    endGame.remove();
     pScore.textContent = playerScore;
     cScore.textContent = compScore;
     output.textContent = "Choose rock, paper or scissors!"
