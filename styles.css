@@ -1,19 +1,77 @@
 button.btn{
-    color: red;
+    width: 100px;
     
+}
+
+body{
+    font-family: 'Courier New', Courier, monospace;
 }
 
 
 .roundScore-container{
     display:flex;
+    justify-content: center;
+    border: 2px solid black;
+    gap: 20px;
 }
 
 .pScore,
 .cScore{
     display:flex;
     justify-content:center;
+    border: 2px solid black;
+}
+
+.pGames,
+.cGames{
+    display: flex;
+    justify-content: center;
+    border: 2px solid black;
 }
 
 .gameScore-container{
     display:flex;
+    justify-content: center;
+    border: 2px solid black;
+    gap: 20px;
+}
+
+.header{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.button-container{
+    display:flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.output-container{
+    display:flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    height: 500px;
+    
+}
+
+.output{
+    display:flex;
+    justify-content: center;
+}
+
+.score-container{
+    display:flex;
+    flex-direction: column;
+    gap: 10px;
+    height:500px;
+    justify-content: space-evenly;
+
+
+}
+
+
+*{
+    border: 2px solid red;
 }
