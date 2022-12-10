@@ -1,0 +1,19 @@
+button.btn{
+    color: red;
+    
+}
+
+
+.roundScore-container{
+    display:flex;
+}
+
+.pScore,
+.cScore{
+    display:flex;
+    justify-content:center;
+}
+
+.gameScore-container{
+    display:flex;
+}
