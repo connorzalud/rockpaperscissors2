@@ -10,17 +10,22 @@ function computerChoice(){
 }
 
 function playRound(playerSelection,computerSelection){
+    
     if (playerSelection === computerSelection){
-        return `You tie! You played ${playerSelection} and the computer played ${computerSelection}`
+        let tie = `You tie! You played ${playerSelection} and the computer played ${computerSelection}`;
+        output.textContent = tie
     } else if (playerSelection === "rock" && computerSelection === "paper" || playerSelection === "paper"
     && computerSelection === "scissors" || playerSelection === "scissors" && computerSelection === "rock"){
         ++compScore;
-        return `You lose! You played ${playerSelection} and the computer played ${computerSelection}`
+        let lose = `You lose! You played ${playerSelection} and the computer played ${computerSelection}`
+        output.textContent = lose
     } else {
-        ++playerScore;
-        return `You win! You played ${playerSelection} and the computer played ${computerSelection}`
+       ++playerScore;
+        let win =`You win! You played ${playerSelection} and the computer played ${computerSelection}`;
+        output.textContent = win
     }
 }
+
 
 let playerScore = 0;
 let compScore = 0;
@@ -28,8 +33,10 @@ let playerGame = 0;
 let compGame = 0;
 
 function playGame(){
-    
-    for (i =0; i<50; ++i){
+    pScore.textContent = playerScore;
+    cScore.textContent = compScore;
+
+    /*for (i =0; i<50; ++i){
     let x = prompt("Choose");
     let x_Lower = x.toLowerCase();
     while(true){
@@ -40,38 +47,51 @@ function playGame(){
              x_Lower = x.toLowerCase();
     }
 
-    let playerSelection = x_Lower;
-    let computerSelection = computerChoice();
+    playerSelection = x_Lower;
+    computerSelection = computerChoice();
     console.log(playerSelection);
     console.log(computerSelection);
    
     
     console.log(playRound(playerSelection, computerSelection))
     console.log("Player score: " + playerScore);
-    console.log("Computer score " + compScore);
+    console.log("Computer score " + compScore);*/
 
    if (playerScore === 5){
         ++playerGame;
-        console.log("You win this game!")
-        console.log("Player games won: " + playerGame);
-        console.log("Computer games won: " + compGame);
+        output.textContent = "You win this game! Choose to play again."
         playerScore = 0;
         compScore = 0;
 
         return;
     } else if (compScore === 5){
         ++compGame;
-        console.log("You lose this game!");
-        console.log("Player games won: " + playerGame);
-        console.log("Computer games won: " + compGame);
+        output.textContent = "You lose this game! Choose to play again."
         playerScore = 0;
         compScore = 0;
         return;
    }}
-   
-   
+
+   const buttons = document.querySelectorAll(".btn");
+const output = document.querySelector(".output");
+const pScore = document.querySelector(".pScore");
+const cScore = document.querySelector(".cScore");
+
+/*for (let i = 0; i<buttons.length; i++){
+    buttons[i].style.color = "red"
+}*/
+
+buttons.forEach(btn => {
+    btn.addEventListener("click", function(){
+        console.log("Did this work?")
+        playerSelection = btn.id;
+         computerSelection = computerChoice();
+        playRound(playerSelection,computerSelection);
+        playGame();
+        
+    })
+})
 
 
 
 
-}
