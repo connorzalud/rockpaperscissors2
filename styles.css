@@ -108,3 +108,19 @@ body{
 }
 
 
+.end-container{
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 500px;
+    font-size: xx-large;
+    color:azure;
+    gap: 50px;
+}
+
+.image{
+    height: 100px;
+    width: 100px;
+}
+
