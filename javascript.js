@@ -60,6 +60,8 @@ function playGame(){
    if (playerScore === 5){
         ++playerGame;
         output.textContent = "You win this game! Choose to play again."
+        cGames.textContent = compGame;
+        pGames.textContent = playerGame;
         playerScore = 0;
         compScore = 0;
 
@@ -67,6 +69,8 @@ function playGame(){
     } else if (compScore === 5){
         ++compGame;
         output.textContent = "You lose this game! Choose to play again."
+        cGames.textContent = compGame;
+        pGames.textContent = playerGame;
         playerScore = 0;
         compScore = 0;
         return;
@@ -76,6 +80,8 @@ function playGame(){
 const output = document.querySelector(".output");
 const pScore = document.querySelector(".pScore");
 const cScore = document.querySelector(".cScore");
+const cGames = document.querySelector(".cGames");
+const pGames = document.querySelector(".pGames");
 
 /*for (let i = 0; i<buttons.length; i++){
     buttons[i].style.color = "red"
