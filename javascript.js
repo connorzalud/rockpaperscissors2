@@ -36,43 +36,16 @@ function playGame(){
     pScore.textContent = playerScore;
     cScore.textContent = compScore;
 
-    /*for (i =0; i<50; ++i){
-    let x = prompt("Choose");
-    let x_Lower = x.toLowerCase();
-    while(true){
-        if(x_Lower === "rock" || x_Lower === "paper" || x_Lower === "scissors"){
-            break;
-        } else 
-             x = prompt("Choose again");
-             x_Lower = x.toLowerCase();
-    }
-
-    playerSelection = x_Lower;
-    computerSelection = computerChoice();
-    console.log(playerSelection);
-    console.log(computerSelection);
-   
-    
-    console.log(playRound(playerSelection, computerSelection))
-    console.log("Player score: " + playerScore);
-    console.log("Computer score " + compScore);*/
-
    if (playerScore === 5){
         ++playerGame;
-        output.textContent = "You win this game! Choose to play again."
-        cGames.textContent = compGame;
-        pGames.textContent = playerGame;
-        playerScore = 0;
-        compScore = 0;
+        playerWin();
+        disableButtons();
 
         return;
     } else if (compScore === 5){
         ++compGame;
-        output.textContent = "You lose this game! Choose to play again."
-        cGames.textContent = compGame;
-        pGames.textContent = playerGame;
-        playerScore = 0;
-        compScore = 0;
+        playerLose();
+        disableButtons();
         return;
    }}
 
@@ -82,10 +55,11 @@ const pScore = document.querySelector(".pScore");
 const cScore = document.querySelector(".cScore");
 const cGames = document.querySelector(".cGames");
 const pGames = document.querySelector(".pGames");
+const endGame = document.querySelector(".endGame");
+const newGameMessage = document.createElement("p");
+const newGameBtn = document.createElement("button");
+newGameBtn.classList.add("newbtn");
 
-/*for (let i = 0; i<buttons.length; i++){
-    buttons[i].style.color = "red"
-}*/
 
 buttons.forEach(btn => {
     btn.addEventListener("click", function(){
@@ -97,6 +71,52 @@ buttons.forEach(btn => {
         
     })
 })
+
+newGameBtn.addEventListener("click", function(){
+    playNewGame();
+})
+
+function disableButtons(){
+    document.getElementById("rock").disabled = true;
+    document.getElementById("paper").disabled = true;
+    document.getElementById("scissors").disabled = true;
+}
+
+function playerWin(){
+    output.textContent = "You win this game!"
+    cGames.textContent = compGame;
+    pGames.textContent = playerGame;
+    newGameMessage.textContent = "Click below to play again!"
+    endGame.append(newGameMessage);
+    newGameBtn.textContent = "Play again";
+    endGame.append(newGameBtn);
+    playerScore = 0;
+    compScore = 0;
+}
+
+function playerLose(){
+    output.textContent = "You lose this game!"
+    cGames.textContent = compGame;
+    pGames.textContent = playerGame;
+    newGameMessage.textContent = "Click below to play again!"
+    endGame.append(newGameMessage);
+    newGameBtn.textContent = "Play again";
+    endGame.append(newGameBtn);
+    playerScore = 0;
+    compScore = 0;
+}
+
+function playNewGame(){
+    document.getElementById("rock").disabled = false;
+    document.getElementById("paper").disabled = false;
+    document.getElementById("scissors").disabled = false;
+    newGameMessage.remove();
+    newGameBtn.remove();
+    pScore.textContent = playerScore;
+    cScore.textContent = compScore;
+    output.textContent = "Choose rock, paper or scissors!"
+}
+
 
 
 
