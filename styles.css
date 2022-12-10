@@ -1,7 +1,19 @@
-button.btn{
+.btn{
     width: 100px;
-    border-radius: 10%
+    border-radius: 10%;
+    background-color: lightgray;
+    padding:5px;
+    cursor: pointer;
     
+}
+
+.btn:active{
+    transform: scale(.95);
+    background-color: darkgray;
+}
+
+.newbtn{
+    cursor: pointer;
 }
 
 body{
