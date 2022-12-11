@@ -1,3 +1,56 @@
+
+//game logic definitions
+const buttons = document.querySelectorAll(".btn");
+const output = document.querySelector(".output");
+const pScore = document.querySelector(".pScore");
+const cScore = document.querySelector(".cScore");
+const cGames = document.querySelector(".cGames");
+const pGames = document.querySelector(".pGames");
+const endGame = document.createElement("div");
+const newGameMessage = document.createElement("p");
+const newGameBtn = document.createElement("button");
+newGameBtn.classList.add("newbtn");
+endGame.classList.add("endGame");
+const outputContainer = document.querySelector(".output-container");
+let playerScore = 0;
+let compScore = 0;
+let playerGame = 0;
+let compGame = 0;
+
+//start screen definitions
+const start = document.createElement("div");
+const startText = document.createElement("div");
+const startbtn = document.createElement("button");
+start.classList.add("start-container");
+startbtn.classList.add("start-btn");
+startText.classList.add("start-text");
+
+//start.textContent="Play rock, paper scissors against the computer! The first to 5 points wins one game. The first to win five games is the winner!";
+startText.textContent= "Play rock, paper scissors against the computer! The first to 5 points wins one game. The first to win five games is the winner!"
+startbtn.textContent = "START";
+start.append(startText);
+start.append(startbtn);
+
+//game over definitions
+const gameover = document.createElement("div");
+const body = document.querySelector("body");
+gameover.classList.add("game-over");
+const winImg = document.createElement("img");
+winImg.src = "../rockpaperscissors2/images/celebrate.png";
+const loseImg = document.createElement("img");
+loseImg.src = "../rockpaperscissors2/images/sad.png";
+const endContainer = document.createElement("div");
+endContainer.classList.add("end-container");
+winImg.classList.add("image");
+loseImg.classList.add("image");
+
+
+//functions
+function startScreen(){
+    outputContainer.remove();
+    body.append(start);
+}
+
 function computerChoice(){
     let compChoice = Math.floor(Math.random()*3);
     if(compChoice === 0){
@@ -27,10 +80,7 @@ function playRound(playerSelection,computerSelection){
 }
 
 
-let playerScore = 0;
-let compScore = 0;
-let playerGame = 4;
-let compGame = 4;
+
 
 function playGame(){
     pScore.textContent = playerScore;
@@ -49,37 +99,10 @@ function playGame(){
         return;
    }}
 
-   const buttons = document.querySelectorAll(".btn");
-const output = document.querySelector(".output");
-const pScore = document.querySelector(".pScore");
-const cScore = document.querySelector(".cScore");
-const cGames = document.querySelector(".cGames");
-const pGames = document.querySelector(".pGames");
-const endGame = document.createElement("div");
-const newGameMessage = document.createElement("p");
-const newGameBtn = document.createElement("button");
-newGameBtn.classList.add("newbtn");
-endGame.classList.add("endGame");
-const outputContainer = document.querySelector(".output-container");
-
-
-buttons.forEach(btn => {
-    btn.addEventListener("click", function(){
-        console.log("Did this work?")
-        playerSelection = btn.id;
-         computerSelection = computerChoice();
-        playRound(playerSelection,computerSelection);
-        playGame();
-        gameOver();
-        
-    })
-})
-
-
-
-newGameBtn.addEventListener("click", function(){
-    playNewGame();
-})
+   function startGame(){
+    start.remove();
+    body.append(outputContainer);
+}
 
 function disableButtons(){
     document.getElementById("rock").disabled = true;
@@ -125,19 +148,6 @@ function playNewGame(){
 }
 
 
-const gameover = document.createElement("div");
-const body = document.querySelector("body");
-gameover.classList.add("game-over");
-const winImg = document.createElement("img");
-winImg.src = "../rockpaperscissors2/images/celebrate.png";
-const loseImg = document.createElement("img");
-loseImg.src = "../rockpaperscissors2/images/sad.png";
-const endContainer = document.createElement("div");
-endContainer.classList.add("end-container");
-winImg.classList.add("image");
-loseImg.classList.add("image");
-
-
 
 function gameOver(){
     if(playerGame === 5){
@@ -159,5 +169,26 @@ function gameOver(){
 }
 
 
+//game
+startScreen();  
 
+buttons.forEach(btn => {
+    btn.addEventListener("click", function(){
+        console.log("Did this work?")
+        playerSelection = btn.id;
+         computerSelection = computerChoice();
+        playRound(playerSelection,computerSelection);
+        playGame();
+        gameOver();
+        
+    })
+})
+
+startbtn.addEventListener("click", function(){
+    startGame();
+})
+
+newGameBtn.addEventListener("click", function(){
+    playNewGame();
+})
 
